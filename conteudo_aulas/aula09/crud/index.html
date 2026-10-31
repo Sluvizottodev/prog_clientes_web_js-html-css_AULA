@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Músicas 🎵</title>
+    <script type="module" src="src/index.js"></script>
+    <link rel="stylesheet" href="index.css" />
+</head>
+<body>
+    <h1>Músicas 🎵</h1>
+    <menu>
+        <button id="novo">Novo</button>
+        <button id="remover">Remover</button>
+        <button id="alterar">Alterar</button>
+    </menu>
+    <table>
+        <thead>
+            <tr>
+                <th>Id</th>
+                <th>Nome</th>
+                <th>Artista</th>
+            </tr>
+        </thead>
+        <tbody></tbody>
+    </table>
+    <dialog>
+        <form method="dialog" >
+            <input type="hidden" id="id" />
+
+            <label for="nome">Nome:</label>
+            <input type="text" id="nome" minlength="2" maxlength="60" required />
+
+            <label for="artista">Artista:</label>
+            <input type="text" id="artista" list="artistas"
+                minlength="2" maxlength="60" required />
+            <datalist id="artistas" >
+                <option>Michael Jackson</option>
+                <option>Tim Maia</option>
+                <option>Gorillaz</option>
+                <option>System of a Down</option>
+            </datalist>
+
+            <button id="salvar">Salvar</button>
+            <button id="fechar" type="button" >Fechar</button>
+        </form>
+    </dialog>
+</body>
+</html>

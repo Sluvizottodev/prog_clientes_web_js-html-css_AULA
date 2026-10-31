@@ -1,0 +1,10 @@
+{
+    "pedidos": [],
+    "produtos": [
+        {"codigo": "123", "descricao": "Coca-cola 2L",     "preco": 12.00},
+        {"codigo": "456", "descricao": "Pastel de Frango", "preco":  9.00},
+        {"codigo": "789", "descricao": "Chamito",          "preco":  7.50},
+        {"codigo": "ABC", "descricao": "Cheetos",          "preco":  5.00},
+        {"codigo": "DEF", "descricao": "Guarativa",        "preco":  2.00}
+    ]
+}

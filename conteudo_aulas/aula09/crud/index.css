@@ -1,0 +1,8 @@
+.selecionado {
+    background-color: beige;
+}
+
+tbody tr {
+    user-select: none;
+    cursor: pointer;
+}

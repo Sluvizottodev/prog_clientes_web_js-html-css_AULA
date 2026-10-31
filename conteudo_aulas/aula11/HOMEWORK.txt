@@ -1,0 +1,14 @@
+1) Incremente a tela de PDV permitindo que o usuário informe um
+percentual de desconto. Faça com que ao sair da caixa de texto,
+o valor do desconto seja exibido na tela, além de o total da venda
+ser mostrado. Exemplo:
+
+Subtotal dos itens: R$ 100,00
+Valor do desconto : R$  10,00
+Total:            : R$ 110,00
+
+
+2) Implemente o comportamento de permitir remover um item.
+
+3) Implemente o comportamento de poder aumentar a quantidade
+   de um item já comprado, entrando com ele novamente no input.
