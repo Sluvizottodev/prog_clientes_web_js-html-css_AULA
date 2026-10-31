@@ -1,0 +1,15 @@
+1) Crie uma classe Filme, em filme.js, que contenha nome e categoria,
+   recebidos pelo construtor, de forma default.
+   A classe deve ter atributos privados e propriedades para acesso aos atributos.
+
+2) Crie uma arquivo lista-filmes.js que contenha um array de objetos de filme,
+   com pelo menos cinco.
+
+3) Crie um arquivo filmes.html que produza uma tabela com os filmes de lista-filmes.js.
+   Utilize as funções de array vistas para transformar o array de filmes em linhas
+   de tabela.
+
+4) Crie um formulário que permita pesquisar um filme pelo nome ou pela categoria.
+   Inclua um campo de pesquisa e um botão de pesquisa.
+   Apenas os filmes que contenham o texto informados devem ser exibidos, ao acionar
+   o botão de pesquisa. Use as funções vistas na disciplina para filtrar os filmes.

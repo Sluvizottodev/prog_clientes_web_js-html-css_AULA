@@ -1,0 +1,365 @@
+<title>Cola de JS e Tabelas</title>
+<style>
+  :root{
+    --bg: #f7f4ee;
+    --paper: #fffdf8;
+    --ink: #2a2620;
+    --ink-soft: #6b6459;
+    --rule: #e3ddd0;
+    --accent: #3730a3;
+    --accent-soft: #eceafb;
+
+    --c-table-bg: #fef6df;
+    --c-table-edge: #e8d99a;
+    --c-poo-bg: #dfeaff;
+    --c-poo-edge: #b9cdf5;
+    --c-storage-bg: #dcf3e4;
+    --c-storage-edge: #b3ddc0;
+    --c-button-bg: #fbe1ee;
+    --c-button-edge: #eec2d9;
+  }
+  @media (prefers-color-scheme: dark){
+    :root:not([data-theme="light"]){
+      --bg: #1c1a17;
+      --paper: #242220;
+      --ink: #ede8df;
+      --ink-soft: #a49d90;
+      --rule: #3a362f;
+      --accent: #b3aaff;
+      --accent-soft: #2c2a52;
+
+      --c-table-bg: #3a3220;
+      --c-table-edge: #5c4f2c;
+      --c-poo-bg: #212c42;
+      --c-poo-edge: #35446b;
+      --c-storage-bg: #1f3327;
+      --c-storage-edge: #2f4f3a;
+      --c-button-bg: #3a2230;
+      --c-button-edge: #5a3448;
+    }
+  }
+  :root[data-theme="dark"]{
+    --bg: #1c1a17;
+    --paper: #242220;
+    --ink: #ede8df;
+    --ink-soft: #a49d90;
+    --rule: #3a362f;
+    --accent: #b3aaff;
+    --accent-soft: #2c2a52;
+
+    --c-table-bg: #3a3220;
+    --c-table-edge: #5c4f2c;
+    --c-poo-bg: #212c42;
+    --c-poo-edge: #35446b;
+    --c-storage-bg: #1f3327;
+    --c-storage-edge: #2f4f3a;
+    --c-button-bg: #3a2230;
+    --c-button-edge: #5a3448;
+  }
+
+  * { box-sizing: border-box; }
+  body{
+    background: var(--bg);
+    color: var(--ink);
+    font-family: 'Inter', system-ui, -apple-system, sans-serif;
+    padding-inline: 20px;
+    padding-block: 32px 56px;
+  }
+
+  .wrap{ max-width: 1120px; margin: 0 auto; }
+
+  header{ margin-bottom: 32px; }
+  .eyebrow{
+    font-family: 'Space Mono', ui-monospace, monospace;
+    font-size: 12px;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: var(--accent);
+    margin: 0 0 8px;
+  }
+  h1{
+    font-family: 'Space Mono', ui-monospace, monospace;
+    font-size: clamp(28px, 5vw, 40px);
+    line-height: 1.15;
+    margin: 0 0 10px;
+    text-wrap: balance;
+  }
+  header p{
+    color: var(--ink-soft);
+    font-size: 15px;
+    max-width: 62ch;
+    margin: 0;
+  }
+
+  .legend{
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px 18px;
+    margin-top: 20px;
+    padding-top: 18px;
+    border-top: 1px solid var(--rule);
+  }
+  .legend-item{
+    display: flex;
+    align-items: center;
+    gap: 7px;
+    font-size: 13px;
+    color: var(--ink-soft);
+  }
+  .swatch{
+    width: 12px; height: 12px;
+    border-radius: 3px;
+    flex: none;
+  }
+
+  .board{
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
+    gap: 18px;
+  }
+
+  .card{
+    background: var(--paper);
+    border: 1px solid var(--rule);
+    border-radius: 10px;
+    padding: 18px 18px 16px;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    position: relative;
+    box-shadow: 0 1px 2px rgba(0,0,0,0.04);
+  }
+  .card::before{
+    content: '';
+    position: absolute;
+    top: 0; left: 18px; right: 18px;
+    height: 5px;
+    border-radius: 0 0 3px 3px;
+    background: var(--tab-color);
+  }
+  .card.table   { --tab-color: var(--c-table-edge); }
+  .card.poo     { --tab-color: var(--c-poo-edge); }
+  .card.storage { --tab-color: var(--c-storage-edge); }
+  .card.button  { --tab-color: var(--c-button-edge); }
+
+  .tag{
+    align-self: flex-start;
+    font-family: 'Space Mono', ui-monospace, monospace;
+    font-size: 10.5px;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    padding: 3px 9px;
+    border-radius: 999px;
+    color: var(--ink);
+  }
+  .card.table .tag   { background: var(--c-table-bg); }
+  .card.poo .tag     { background: var(--c-poo-bg); }
+  .card.storage .tag { background: var(--c-storage-bg); }
+  .card.button .tag  { background: var(--c-button-bg); }
+
+  .card h2{
+    font-size: 17px;
+    margin: 0;
+    font-weight: 700;
+  }
+
+  .when{
+    font-size: 13px;
+    color: var(--ink-soft);
+    line-height: 1.5;
+    margin: 0;
+  }
+  .when b { color: var(--ink); font-weight: 600; }
+
+  pre{
+    margin: 0;
+    background: #1b1a23;
+    color: #e7e5f5;
+    border-radius: 7px;
+    padding: 10px 12px;
+    font-family: 'Space Mono', ui-monospace, monospace;
+    font-size: 12.2px;
+    line-height: 1.55;
+    overflow-x: auto;
+    white-space: pre;
+  }
+  :root[data-theme="light"] pre,
+  :root:not([data-theme="dark"]) pre{
+  }
+  pre .k{ color: #8fd3ff; }
+  pre .s{ color: #ffd399; }
+  pre .c{ color: #7d7a94; }
+  pre .f{ color: #b3f0c0; }
+
+  .note{
+    font-size: 12px;
+    color: var(--accent);
+    background: var(--accent-soft);
+    border-radius: 6px;
+    padding: 7px 10px;
+    line-height: 1.45;
+  }
+
+  footer{
+    margin-top: 40px;
+    padding-top: 18px;
+    border-top: 1px solid var(--rule);
+    font-size: 12.5px;
+    color: var(--ink-soft);
+  }
+
+  @media (max-width: 480px){
+    .card { padding: 16px 14px 14px; }
+  }
+</style>
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Space+Mono:wght@400;700&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+
+<div class="wrap">
+  <header>
+    <p class="eyebrow">Cola de estudo · JS + Tabelas</p>
+    <h1>Um cartão por ideia.<br>Cor por assunto.</h1>
+    <p>Cada cartão responde 3 coisas: o que é, quando usar, e como escrever. Print, recorte mental ou deixe a aba aberta enquanto revisa os exercícios.</p>
+    <div class="legend">
+      <span class="legend-item"><span class="swatch" style="background:var(--c-table-edge)"></span>Tabela HTML</span>
+      <span class="legend-item"><span class="swatch" style="background:var(--c-poo-edge)"></span>POO / Classe</span>
+      <span class="legend-item"><span class="swatch" style="background:var(--c-storage-edge)"></span>localStorage</span>
+      <span class="legend-item"><span class="swatch" style="background:var(--c-button-edge)"></span>Botões / Ações</span>
+    </div>
+  </header>
+
+  <div class="board">
+
+    <div class="card table">
+      <span class="tag">Tabela</span>
+      <h2>thead / tbody / tfoot</h2>
+      <p class="when">Use quando: <b>thead</b> = rótulo fixo da coluna. <b>tbody</b> = dados, é o único que o JS apaga e recria. <b>tfoot</b> = total/resumo, fica fora do loop de dados.</p>
+      <pre>&lt;table&gt;
+  &lt;thead&gt;...&lt;/thead&gt;   <span class="c">// fixo</span>
+  &lt;tbody&gt;&lt;/tbody&gt;      <span class="c">// JS enche aqui</span>
+  &lt;tfoot&gt;...&lt;/tfoot&gt;   <span class="c">// total</span>
+&lt;/table&gt;</pre>
+    </div>
+
+    <div class="card table">
+      <span class="tag">Tabela</span>
+      <h2>tr vs td vs th</h2>
+      <p class="when">Use quando: precisar lembrar quem contém quem. <b>tr</b> é a linha (o trilho); <b>td</b>/<b>th</b> são as células dentro dela. td nunca existe sozinho.</p>
+      <pre>&lt;tr&gt;              <span class="c">// 1 objeto = 1 tr</span>
+  &lt;td&gt;valor&lt;/td&gt;  <span class="c">// 1 campo = 1 td</span>
+&lt;/tr&gt;
+
+th = rótulo (no thead)
+td = dado (no tbody/tfoot)</pre>
+    </div>
+
+    <div class="card table">
+      <span class="tag">Tabela</span>
+      <h2>Redesenhar o tbody</h2>
+      <p class="when">Use quando: os dados mudaram (removeu, adicionou, editou) e a tabela precisa refletir isso na tela.</p>
+      <pre><span class="k">function</span> <span class="f">desenhar</span>(lista) {
+  <span class="k">const</span> tbody = document
+    .querySelector(<span class="s">'tbody'</span>);
+  tbody.replaceChildren(); <span class="c">// limpa</span>
+  lista.forEach(item =&gt;
+    tbody.append(criarLinha(item)));
+}</pre>
+    </div>
+
+    <div class="card poo">
+      <span class="tag">POO</span>
+      <h2>Atributo privado</h2>
+      <p class="when">Use quando: quiser proteger um dado da classe para que só ela possa alterá-lo diretamente.</p>
+      <pre><span class="k">class</span> Produto {
+  <span class="c">#id = 0;</span>
+  <span class="c">#nome = '';</span>
+}
+<span class="c">// fora da classe: produto.#id → ERRO</span></pre>
+    </div>
+
+    <div class="card poo">
+      <span class="tag">POO</span>
+      <h2>Constructor</h2>
+      <p class="when">Use quando: for criar uma instância nova com <b>new</b>. Atribua sem # para passar pelo set.</p>
+      <pre><span class="k">constructor</span>(id = 0, nome = '') {
+  <span class="k">this</span>.id = id;     <span class="c">// chama o set</span>
+  <span class="k">this</span>.nome = nome; <span class="c">// chama o set</span>
+}</pre>
+    </div>
+
+    <div class="card poo">
+      <span class="tag">POO</span>
+      <h2>get / set</h2>
+      <p class="when">Use quando: precisar ler ou escrever um atributo privado a partir de fora da classe.</p>
+      <pre><span class="k">get</span> nome() { <span class="k">return</span> <span class="k">this</span>.#nome; }
+<span class="k">set</span> nome(v) { <span class="k">this</span>.#nome = v; }
+
+<span class="c">// uso: produto.nome / produto.nome = 'x'</span></pre>
+    </div>
+
+    <div class="card storage">
+      <span class="tag">localStorage</span>
+      <h2>Salvar</h2>
+      <p class="when">Use quando: o array de dados mudou e precisa sobreviver ao F5. Só aceita string, por isso o stringify.</p>
+      <pre>localStorage.setItem(
+  <span class="s">'produtos'</span>,
+  JSON.stringify(listaProdutos)
+);</pre>
+    </div>
+
+    <div class="card storage">
+      <span class="tag">localStorage</span>
+      <h2>Carregar</h2>
+      <p class="when">Use quando: a página abre e precisa recuperar os dados salvos. Trate o caso de "nunca salvou".</p>
+      <pre><span class="k">const</span> txt = localStorage.getItem(<span class="s">'produtos'</span>);
+<span class="k">const</span> lista = txt === <span class="k">null</span>
+  ? []
+  : JSON.parse(txt);</pre>
+    </div>
+
+    <div class="card storage">
+      <span class="tag">localStorage</span>
+      <h2>Cuidado: perde a classe</h2>
+      <p class="when">Use quando: os dados carregados precisam voltar a ser instância de Produto (com get/set), não objeto solto.</p>
+      <pre><span class="c">// JSON.parse devolve objeto "sem classe"</span>
+lista.<span class="f">map</span>(p =&gt;
+  <span class="k">new</span> Produto(p.id, p.nome, p.preco));</pre>
+    </div>
+
+    <div class="card button">
+      <span class="tag">Botão</span>
+      <h2>Criar + ouvir clique</h2>
+      <p class="when">Use quando: cada linha da tabela precisar de uma ação própria, como remover.</p>
+      <pre><span class="k">const</span> btn = document.createElement(<span class="s">'button'</span>);
+btn.innerText = <span class="s">'🗑️'</span>;
+btn.addEventListener(<span class="s">'click'</span>,
+  () =&gt; <span class="f">remover</span>(produto));</pre>
+    </div>
+
+    <div class="card button">
+      <span class="tag">Botão</span>
+      <h2>As 3 etapas de toda ação</h2>
+      <p class="when">Use sempre: remover, cadastrar ou alterar seguem esta mesma ordem. Esquecer uma etapa é o bug mais comum.</p>
+      <pre>1. mexe no <span class="k">ARRAY</span>
+2. redesenha o <span class="k">TBODY</span>
+3. salva no <span class="k">localStorage</span></pre>
+    </div>
+
+    <div class="card button">
+      <span class="tag">Botão</span>
+      <h2>dialog (modal)</h2>
+      <p class="when">Use quando: precisar de um formulário para cadastrar ou editar sem sair da página.</p>
+      <pre>dialog.showModal();  <span class="c">// abre</span>
+dialog.close();      <span class="c">// fecha</span>
+
+<span class="c">// no submit do form:</span>
+event.preventDefault(); <span class="c">// não recarrega</span></pre>
+    </div>
+
+  </div>
+
+  <footer>
+    Baseado no padrão usado da aula04 à aula06 (filmes.html + index.js). Ordem sugerida de estudo: Tabela → POO → localStorage → Botões.
+  </footer>
+</div>

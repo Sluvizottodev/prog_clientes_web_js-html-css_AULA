@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Exemplo</title>
+    <script src="index.js" ></script>
+    <link rel="stylesheet" href="index.css">
+</head>
+<body>
+    <h1>Título 1</h1>
+    <h2>Título 2</h2>
+    <h3>Título 3!</h3>
+    <form action="/destino.php" method="post" >
+
+        <label for="nome" accesskey="N" >Nome:</label>
+        <input type="text" name="nome" id="nome"
+            placeholder="Nome do aluno"
+            required minlength="2" maxlength="100"
+        />
+
+        <label for="cr">CR atual:</label>
+        <input type="number" name="cr" id="cr"
+            required min="0" max="10"
+        />
+
+        <label for="cidade">Cidade:</label>
+        <select name="cidade" id="cidade" required >
+            <option value="1" >Nova Friburgo</option>
+            <option value="2" >Bom Jardim</option>
+            <option value="3" >Cordeiro</option>
+            <option value="4" >Cantagalo</option>
+            <option value="5" selected >Cachoeiras de Macacú</option>
+        </select>
+
+        <label for="endereco">Endereço:</label>
+        <textarea name="endereco" id="endereco" rows="3"
+            required ></textarea>
+
+        <label for="telefone">Telefone:</label>
+        <input type="tel" name="telefone" id="telefone" required />
+
+        <label for="email">E-mail:</label>
+        <input type="email" name="email" id="email" required />
+
+        <label for="nascimento">Nascimento:</label>
+        <input type="date" name="nascimento" id="nascimento">
+
+        <label for="municipal">Usa ônibus municipal:</label>
+        <optgroup id="municipal" >
+            <input type="radio" name="municipal" id="sim" ><label for="sim">Sim</label>
+            <input type="radio" name="municipal" id="nao" ><label for="nao">Não</label>
+        </optgroup>
+
+        <input type="checkbox" name="noticias" id="noticias" checked >
+        <label for="noticias">Receber notícias por e-mail</label>
+
+        <label for="avaliacao">Avaliação da Faculdade:</label>
+        <input type="range" name="avaliacao" id="avaliacao" min="1" max="5"
+            onchange="nota.textContent = '⭐'.repeat( avaliacao.value )"
+        />
+        <span id="nota" title="Nota" ></span>
+
+
+        <button>Enviar</button>
+    </form>
+
+    <table>
+        <thead>
+            <tr>
+                <th>Id</th>
+                <th>Nome</th>
+                <th>Cidade</th>
+                <th>CR</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <td>1</td>
+                <td>Pedro Abib</td>
+                <td>Nova Friburgo</td>
+                <td>9.0</td>
+            </tr>
+            <tr>
+                <td>2</td>
+                <td>Eric Mello</td>
+                <td>Cantagalo</td>
+                <td>9.22</td>
+            </tr>
+            <tr>
+                <td>3</td>
+                <td>Ana Maria</td>
+                <td>Bom Jardim</td>
+                <td>10.0</td>
+            </tr>
+        </tbody>
+        <tfoot>
+            <tr>
+                <td colspan="3" >Média:</td>
+                <td>9.4</td>
+            </tr>
+        </tfoot>
+    </table>
+</body>
+</html>

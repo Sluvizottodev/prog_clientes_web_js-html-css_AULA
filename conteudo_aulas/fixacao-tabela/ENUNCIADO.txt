@@ -1,0 +1,81 @@
+EXERCÍCIO DE FIXAÇÃO — table (thead/tbody/tfoot, tr/td)
+=========================================================
+
+Contexto: uma lista de PRODUTOS de uma loja.
+Cada produto tem: id, nome, preço e quantidade em estoque.
+
+Objetivo: praticar a diferença entre tr/td e o papel de thead/tbody/tfoot,
+seguindo o MESMO padrão usado em aula06 (lista-filmes.js + index.js).
+
+-----------------------------------------------------------
+PARTE 1 — Só de olho (sem código, responda por escrito)
+-----------------------------------------------------------
+1) Quantos <tr> vão existir dentro do <tbody> se eu tiver 4 produtos? 4
+2) Quantos <td> vai ter cada <tr> do <tbody>, se cada produto tem
+   id, nome, preço e quantidade? 4
+3) O <thead> também tem um <tr>. Ele usa <td> ou <th>? Por quê? th, pois o thead define cabeçalho, o td é usado para dados e o th para rótulos
+4) Por que o <tfoot> (que vai mostrar o VALOR TOTAL do estoque)
+   não deve ficar dentro do <tbody>? pois ele é uma agregação, não faz parte do corpo e foge da norma de organização definida.
+
+-----------------------------------------------------------
+PARTE 2 — Complete o HTML (produtos.html)
+-----------------------------------------------------------
+Complete os espaços em branco (____) no arquivo produtos.html
+que está nesta mesma pasta.
+
+-----------------------------------------------------------
+PARTE 3 — Escreva o JavaScript, em POO (classe Produto)
+-----------------------------------------------------------
+Mesmo padrão usado em filme.js + lista-filmes.js + index.js da aula06,
+só que para Produto. Siga a ordem abaixo — cada etapa depende da anterior.
+
+3.1) Crie a classe Produto, em Produto.js
+     - Atributos privados (com #): id, nome, preco, quantidade
+     - constructor( id, nome, preco, quantidade ) com valores default,
+       que atribui cada parâmetro via this.propriedade = valor
+       (ou seja, passando pelos "set", não direto no atributo privado)
+     - Um par get/set para cada um dos 4 atributos
+     - export class Produto { ... }
+
+     Dica de estrutura (sem copiar valores, só a forma):
+     olhe filme.js e troque nome/categoria por id/nome/preco/quantidade.
+
+3.2) Crie o arquivo listaProdutos.js
+     - import { Produto } from "./Produto.js"
+     - export const listaProdutos = [ ... ]
+     - Um array com pelo menos 4 "new Produto( ... )", com valores
+       de exemplo diferentes entre si.
+
+3.3) No produtos.js, escreva:
+
+   a) Uma função `celula(texto)` que cria e devolve um <td> com o texto.
+      (mesma ideia do "celula" da aula06 e da aula04)
+
+   b) Uma função `criarLinha(produto)` que cria um <tr> e usa `celula()`
+      para adicionar id, nome, preco e quantidade dentro dele.
+      Lembre: como Produto tem get/set, você acessa produto.nome,
+      produto.preco etc. normalmente (não precisa do #).
+
+   c) Uma função `iniciar()` que:
+      - importa listaProdutos de listaProdutos.js
+      - pega o <tbody> com querySelector
+      - para cada produto da lista, cria a linha com criarLinha()
+        e adiciona no tbody
+      - registrada no DOMContentLoaded
+
+   d) DESAFIO (equivalente ao <tfoot> da aula01): depois de preencher
+      o tbody, calcule o valor total do estoque
+      (soma de preco * quantidade de cada produto) e coloque esse
+      valor dentro do <tfoot>, no <td> que tem o id="total".
+      Dica: use reduce() ou um for, e não esqueça de usar colspan
+      no HTML para "juntar" as células do rótulo "Total:".
+
+-----------------------------------------------------------
+PARTE 4 — Perguntas de revisão (responda por escrito, sem código)
+-----------------------------------------------------------
+1) Se o JS fizesse `document.querySelector('table').replaceChildren()`
+   em vez de `document.querySelector('tbody').replaceChildren()`,
+   o que aconteceria de errado?
+2) Por que <td> nunca aparece sozinho, fora de um <tr>?
+3) Dê um exemplo do dia a dia (fora de programação) que se pareça
+   com a relação tbody/tfoot (dados vs. resumo).

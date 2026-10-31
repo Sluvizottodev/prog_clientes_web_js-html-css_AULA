@@ -1,0 +1,10 @@
+1 a) Crie uma lista de filmes, com id, nome, categoria e ano.
+   Essa lista deve ficar armazenada no localStorage.
+
+b) O usuário deve conseguir cadastrar filmes.
+    DICA: use um form em um dialog.
+
+c) O usuário deve conseguir remover filmes.
+
+d) Faça um botão Alterar na tabela que permite abrir o formulário
+   para o usuário modificar um filme.

@@ -1,0 +1,22 @@
+input:not([type="radio"]),
+select,
+textarea {
+    display: block;
+}
+
+#nome {
+    background-color: cornsilk;
+}
+
+label[for="telefone"] {
+    color: blue;
+}
+
+tbody tr:nth-child(odd) {
+    background-color: ivory;
+}
+
+tfoot tr td:last-child {
+    background-color: black;
+    color: white;
+}
