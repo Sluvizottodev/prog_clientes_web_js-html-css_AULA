@@ -1,0 +1,26 @@
+{
+    "perguntas": [
+        {
+            "id":"1",
+            "texto":"A frase a \"Existência precede a essência\" foi dita por:",
+            "respostas": [
+                {
+                    "id":"1",
+                    "texto":"Jean-Paul Sartre"
+                },
+                {
+                    "id":"2",
+                    "texto":"Friedrich Nietzsche"
+                },
+                {
+                    "id":"3",
+                    "texto":"Albert Camus"
+                },
+                {
+                    "id":"4",
+                    "texto":"Simone de Beauvoir"
+                }
+            ]
+        }
+    ]
+}
