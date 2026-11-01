@@ -1,0 +1,45 @@
+body {
+    font-family: Arial, sans-serif;
+    background-color: #f4f6f8;
+    padding: 20px;
+}
+
+table {
+    width: 100%;
+    margin-top: 20px;
+    border-collapse: collapse;
+    background-color: white;
+}
+
+th,
+td {
+    padding: 10px;
+    border: 1px solid #ccc;
+}
+
+th {
+    background-color: #ddd;
+    color: #333;
+    text-align: left;
+}
+
+td:first-child,
+td:nth-child(4) {
+    text-align: center;
+}
+
+td:nth-child(3),
+td:last-child {
+    text-align: right;
+}
+
+tfoot td {
+    font-weight: 700;
+    background-color: #f0f0f0;
+}
+
+button {
+    background-color: blue;
+    color: white;
+    padding: 10px;
+}

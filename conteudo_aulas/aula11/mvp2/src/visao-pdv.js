@@ -18,6 +18,10 @@ export class VisaoPDV {
         document.querySelector( '#adicionar' ).addEventListener( 'click', () => {
             this.#presenter.adicionarItem();
         } );
+
+        document.querySelector('#desconto').addEventListener('input', ()=> {
+            this.#presenter.adicionarDesconto();
+        } )
     }
 
 
@@ -33,6 +37,10 @@ export class VisaoPDV {
 
     quantidade() {
         return this.#entrada().quantidade || '1';
+    }
+
+    desconto(){
+        return document.querySelector('#desconto').value || 0;
     }
 
     mostrarProduto( { descricao, preco } ) {

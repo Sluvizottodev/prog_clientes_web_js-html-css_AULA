@@ -2,18 +2,23 @@ import { ItemPedido } from "./item-pedido.js";
 import { Produto } from "./produto.js";
 
 export class Pedido {
-
     constructor( repositorio ) {
         this.itens = [];
         this.repositorio = repositorio;
     }
+    #desconto = 0;
 
     total() {
         let soma = 0;
         for ( const item of this.itens ) {
             soma += item.subtotal();
         }
-        return soma;
+
+        if(Number(isNaN(this.#desconto))){
+            return soma;
+        }
+        if(this.#desconto > soma) return 0;
+        return soma - Math.abs(this.#desconto);
     }
 
     async procurarProduto( codigo ) {
@@ -38,6 +43,10 @@ export class Pedido {
             throw new Error( mensagem );
         }
         return n;
+    }
+
+    async atualizarDesconto (desconto){
+        this.#desconto = desconto;
     }
 
 }

@@ -32,4 +32,13 @@ export class PresenterPDV {
             this.#visao.mostrarMensagem( erro.message );
         }
     }
+    async adicionarDesconto(){
+        const desconto = this.#visao.desconto();
+        try{
+            const descontoAtualizado = this.#pedido.atualizarDesconto(desconto);
+            this.#visao.atualizarTotal(this.#pedido.total());
+        }catch(e){
+            throw new e;
+        }
+    }
 }
