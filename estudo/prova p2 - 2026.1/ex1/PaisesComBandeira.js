@@ -26,7 +26,7 @@ export async function ObterBandeira(codePais) {
 
 export function desenharBandeira(bandeira){
     const img = document.querySelector('span');
-    img.removeAttribute(hidden); // tirando o escondido
+    img.removeAttribute('hidden'); // tirando o escondido
     img.src = bandeira;
     img.alt='bandeira'; //verificar
 }
