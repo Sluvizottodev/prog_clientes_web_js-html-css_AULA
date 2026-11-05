@@ -6,6 +6,10 @@ export default class ViewEstados{
         this.#presenter = new PresenterEstados(this);
     }
 
+    iniciar(){
+        void this.#presenter.desenharEstados();
+    }
+
     desenharEstados(estados){
         const tbody =  document.querySelector('tbody');
         for(const estado of estados){
@@ -22,7 +26,7 @@ export default class ViewEstados{
     }
 
     obterError(message){
-        output = document.querySelector('output');
+        const output = document.querySelector('output');
         output.innerText(message);
     }
 }
